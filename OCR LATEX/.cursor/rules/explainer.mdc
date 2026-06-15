@@ -1,0 +1,40 @@
+---
+description: Interactive code walkthrough. Use when the user asks to explain, walk through, or understand a feature, module, or code flow ("explain X", "walk me through", "how does X work", "what does this code do").
+alwaysApply: false
+---
+
+# Code Explainer (Windows / text mode)
+
+Adapted from https://github.com/Royal-lobster/code-explainer for Cursor on Windows.
+Repo cloned at `C:\Users\gallo\code-explainer`. Voice/TTS and the VS Code sidebar
+are macOS-only and are NOT available here — always use **Read mode** (text in chat).
+Ignore any sidebar health-check, `curl`, `explainer.sh`, `mlx-audio`, or `~/.claude/...`
+steps from the original docs.
+
+## Flow
+
+1. **Ask preferences** — Use AskQuestion to ask the three questions verbatim from
+   `C:\Users\gallo\code-explainer\docs\assess.md` (familiarity + depth level). For delivery
+   mode, default to **Read** (don't offer Walkthrough/Podcast — they need macOS TTS/sidebar).
+2. **Scout** — Follow `C:\Users\gallo\code-explainer\docs\scan.md`: discover the relevant
+   files and map the call chain for the requested feature. Discovery only, no highlights yet.
+3. **Plan** — Build an ordered segment plan:
+   - **Overview**: 4-8 segments, 40-80 lines each.
+   - **Deep Dive**: 8-15 segments, 15-40 lines each.
+   Show the plan outline in chat and let the user approve/reorder/skip before starting.
+4. **Walk through each segment** — Follow `C:\Users\gallo\code-explainer\docs\read.md`:
+   - Read only the segment lines (use Read with offset/limit).
+   - Explain by complexity: `[core]` = full (intent → mechanism → scenario → non-obvious
+     decisions → thread forward), `[wiring]` = 1-2 sentences, `[supporting]` = brief.
+   - Reference concrete lines (e.g. "On line 42, `matchOrders()`...").
+   - After each segment, print `Segment {n}/{total} — say "next" to continue, or ask a question.`
+     and wait. Handle: `next`, `skip`, `skip to {N}`, `stop`.
+5. **Wrap up** — 3-5 key takeaways, how the feature fits the broader architecture, and offer
+   to dive deeper or explain a related feature.
+
+## Common mistakes
+
+- Reading whole files — use offset+limit for just the segment.
+- Explaining obvious code (imports, loops, null checks) — explain intent/"why", skip boilerplate.
+- Segments too large — split if over the line budget above.
+- Not pausing — always wait for the user after each segment.
