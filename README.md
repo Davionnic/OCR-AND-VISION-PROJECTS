@@ -9,7 +9,6 @@ A collection of computer-vision and OCR tools. Each project lives in its own fol
 | [OCR LATEX](OCR%20LATEX/README.md) | Convert images of mathematical equations into LaTeX using vision models |
 | [LLAMA OCR](LLAMA%20OCR/README.md) | 100% local image-to-Markdown OCR with Llama 3.2 Vision and Streamlit |
 | [GEMMA OCR](GEMMA%20OCR/README.md) | 100% local, private structured OCR with Google's Gemma-3 vision model and Streamlit |
-| [IMAGE CLASSIFIER](IMAGE%20CLASSIFIER/README.md) | Image classification (in progress) |
 
 ## Repository layout
 
@@ -18,7 +17,6 @@ OCR AND VISION/
 ├── OCR LATEX/          # LaTeX OCR from equation images
 ├── LLAMA OCR/          # 100% local image-to-Markdown OCR (Llama 3.2 Vision)
 ├── GEMMA OCR/          # 100% local structured OCR (Gemma-3 Vision)
-├── IMAGE CLASSIFIER/   # Image classification (in progress)
 └── README.md           # This file
 ```
 
