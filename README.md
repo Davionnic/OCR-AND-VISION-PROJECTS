@@ -11,6 +11,55 @@ A collection of computer-vision and OCR tools. Each project lives in its own fol
 | [GEMMA OCR](GEMMA%20OCR/README.md) | 100% local, private structured OCR with Google's Gemma-3 vision model and Streamlit |
 | [QWEN OCR](QWEN%20OCR/README.md) | Local OCR and text spotting with Qwen 2.5 VL via Hugging Face Transformers |
 
+## How it works
+
+### OCR LATEX
+
+```mermaid
+flowchart TD
+  image[Equation image] --> encode[Encode as base64]
+  encode --> backend{Backend}
+  backend -->|ollama| ollama["Ollama qwen2.5vl:3b"]
+  backend -->|openai| openai["OpenAI-compatible API, default gpt-4o-mini"]
+  ollama --> clean[clean_latex]
+  openai --> clean
+  clean --> latex[LaTeX math code]
+```
+
+### LLAMA OCR
+
+```mermaid
+flowchart TD
+  image[Image] --> encode[Encode as base64]
+  encode --> ollama["Ollama llama3.2-vision"]
+  ollama --> clean[clean_markdown]
+  clean --> md[Structured Markdown]
+  md --> ui[Streamlit or CLI]
+```
+
+### GEMMA OCR
+
+```mermaid
+flowchart TD
+  image[Image] --> png[Normalize to PNG]
+  png --> ollama["Ollama gemma3:4b chat with the image"]
+  ollama --> md[Structured Markdown]
+  md --> ui[Streamlit]
+```
+
+### QWEN OCR
+
+```mermaid
+flowchart TD
+  image[Image] --> model["Qwen2.5-VL-7B-Instruct via Transformers"]
+  model --> mode{Mode}
+  mode -->|"Full Page OCR"| text[Extracted page text]
+  mode -->|"Text Spotting"| json["JSON boxes and text"]
+  json --> draw[Draw bounding boxes]
+  text --> ui[Streamlit]
+  draw --> ui
+```
+
 ## Repository layout
 
 ```
