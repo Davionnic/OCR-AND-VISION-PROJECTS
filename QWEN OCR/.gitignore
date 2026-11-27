@@ -11,6 +11,9 @@ dist/
 venv/
 env/
 
+# secrets
+.env
+
 # Streamlit
 .streamlit/secrets.toml
 
